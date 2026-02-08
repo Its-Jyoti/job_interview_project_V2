@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'; // Ensure this is the correct path for your CSS file
+import './LoginPage.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -12,30 +12,36 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response =await axios.post(`${process.env.REACT_APP_API_URL}/api/login/`, {
-        username,
-        password,
-      });
-      // After successful login, redirect to the form page
-      console.log("Login successful, redirecting to form...");
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/login/`,
+        { username, password }
+      );
+
+      console.log('Login successful, redirecting to form...');
       navigate('/form');
-    } catch (error) {
-      setError(error.response?.data?.error || 'Something went wrong');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Something went wrong');
     }
   };
 
   const handleForgotPassword = () => {
-    navigate('/forgot-password'); // Navigate to the forgot password page
+    navigate('/forgot-password');
   };
 
   return (
     <div className="login-container">
       <div className="login-left">
-        <img src="/images/background/12.jpg" alt="background" className="login-image" />
+        <img
+          src="/images/background/12.jpg"
+          alt="background"
+          className="login-image"
+        />
       </div>
+
       <div className="login-right">
         <div className="login-form">
           <h2>Login to Your Account</h2>
+
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="username">Username</label>
@@ -62,15 +68,30 @@ const Login = () => {
             </div>
 
             <div className="forgot-password-link">
-              <a href="#" onClick={handleForgotPassword}>Forgot Password?</a>
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="link-button"
+              >
+                Forgot Password?
+              </button>
             </div>
 
-            <button type="submit" className="login-button">Login</button>
+            <button type="submit" className="login-button">
+              Login
+            </button>
 
             {error && <p className="error-message">{error}</p>}
 
             <div className="signup-link">
-              Don't have an account? <a href="/signup">Sign up</a>
+              Don&apos;t have an account?{' '}
+              <button
+                type="button"
+                onClick={() => navigate('/signup')}
+                className="link-button"
+              >
+                Sign up
+              </button>
             </div>
           </form>
         </div>
@@ -79,6 +100,4 @@ const Login = () => {
   );
 };
 
-
 export default Login;
-
