@@ -16,28 +16,24 @@ const Login = () => {
         `${process.env.REACT_APP_API_URL}/api/login/`,
         { username, password }
       );
-
-      console.log('Login successful, redirecting to form...');
       navigate('/form');
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong');
     }
   };
 
-  const handleForgotPassword = () => {
-    navigate('/forgot-password');
-  };
-
   return (
     <div className="login-container">
+      {/* LEFT IMAGE */}
       <div className="login-left">
         <img
           src="/images/background/12.jpg"
-          alt="background"
+          alt="Login background"
           className="login-image"
         />
       </div>
 
+      {/* RIGHT FORM */}
       <div className="login-right">
         <div className="login-form">
           <h2>Login to Your Account</h2>
@@ -46,8 +42,8 @@ const Login = () => {
             <div className="input-group">
               <label htmlFor="username">Username</label>
               <input
-                type="text"
                 id="username"
+                type="text"
                 placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -58,8 +54,8 @@ const Login = () => {
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <input
-                type="password"
                 id="password"
+                type="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -70,8 +66,8 @@ const Login = () => {
             <div className="forgot-password-link">
               <button
                 type="button"
-                onClick={handleForgotPassword}
                 className="link-button"
+                onClick={() => navigate('/forgot-password')}
               >
                 Forgot Password?
               </button>
@@ -87,8 +83,8 @@ const Login = () => {
               Don&apos;t have an account?{' '}
               <button
                 type="button"
-                onClick={() => navigate('/signup')}
                 className="link-button"
+                onClick={() => navigate('/signup')}
               >
                 Sign up
               </button>
