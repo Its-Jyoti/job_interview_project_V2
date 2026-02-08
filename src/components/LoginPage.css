@@ -1,0 +1,148 @@
+/* Basic reset for the container */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8; /* Light background color */
+}
+
+/* Overall container styling */
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.login-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px; /* Increase padding for better spacing */
+  background-color: #ffffff;
+  border-radius: 20px; /* Make the right section more rounded */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+}
+
+/* Form Styling */
+.login-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px; /* Rounded form */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Input fields and labels */
+.input-group {
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 30px; /* Rounded input fields */
+  background-color: #f9f9f9;
+}
+
+.input-group input:focus {
+  border-color: #0066cc; /* Blue border on focus */
+  outline: none;
+  background-color: #eef3f8;
+}
+
+/* Button Styling */
+.login-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #0066cc; /* Rich blue color */
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #004a99; /* Darker blue on hover */
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Signup link styling */
+.signup-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.signup-link a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Forgot Password */
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgot-password-link a {
+  color: #007bff;  /* Blue color */
+  text-decoration: none;  /* Remove underline */
+  font-weight: bold;  /* Optional: makes the link stand out */
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;  /* Optional: adds underline on hover */
+}
+
+
+/* Background image */
+.login-image {
+  width: 90%; /* Make the image larger */
+  height: auto;
+  border-radius: 20px; /* Round the image */
+}

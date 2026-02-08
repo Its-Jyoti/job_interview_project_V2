@@ -1,0 +1,101 @@
+/* Basic resets */
+* {
+    box-sizing: border-box;
+    margin: 0.5;
+    padding: 0.5;
+}
+
+/* Main container styling */
+.interview-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for the container */
+    /*background: linear-gradient(135deg, #e0f7fa, #b2ebf2);*/ /* Soft gradient background */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.9);
+    text-align: center; /* Center all text */
+    animation: fadeIn 0.5s ease; /* Fade-in animation */
+    backdrop-filter: blur(10px); /* Adds a blur effect */
+    position: relative;
+}
+
+/* Add the background image */
+body {
+    background-image: url('interviewimg.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Center the container vertically */
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Title styles */
+.welcome-message {
+    font-size: 2.5em;
+    color: #381688; /* Teal color for the title */
+    margin-bottom: 10px;
+    transition: transform 0.3s; /* Animation for scaling */
+}
+
+.welcome-message:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.comfort-message {
+    font-size: 1.2em;
+    color: #555; /* Darker text for comfort message */
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+.start-button, .speaker-button {
+    background-color: #61a9ec; /* Teal background */
+    color: white;
+    border: none;
+    border-radius: 25px; /* More rounded corners */
+    padding: 12px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin: 5px; /* Space between buttons */
+}
+
+.start-button:hover, .speaker-button:hover {
+    background-color: #11917c; /* Darker teal on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Error message */
+.error-message {
+    color: #d32f2f; /* Red color for errors */
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .interview-container {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

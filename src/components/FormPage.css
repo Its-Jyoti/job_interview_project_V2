@@ -1,0 +1,97 @@
+/* Basic reset for consistent styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main container styling */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f4f7fa; /* Soft background color */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Title style */
+.form-container h2 {
+    text-align: center;
+    color: #007bff; /* Blue color similar to login/signup pages */
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form field styling */
+.preference-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Select dropdown styling */
+.preference-form select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.preference-form select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+}
+
+/* Button styling */
+.btn-submit {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white;
+    background-color: #007bff; /* Blue background */
+}
+
+.btn-submit:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Message display (for error or success) */
+.message {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ff3860; /* Error color */
+}
+
+.message.success {
+    color: #28a745; /* Success message in green */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+    }
+}
