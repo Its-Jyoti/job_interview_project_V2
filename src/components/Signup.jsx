@@ -25,39 +25,39 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      {/* LEFT SIDE IMAGE */}
       <div className="signup-left">
         <img
           src="/images/background/12.jpg"
-          alt="Signup background"
+          alt="background"
           className="signup-image"
         />
       </div>
 
-      {/* RIGHT SIDE FORM */}
       <div className="signup-right">
         <div className="signup-form">
           <h2>Create a Free Account</h2>
 
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
+                id="username"
+                placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username"
                 required
               />
             </div>
 
             <div className="input-group">
-              <label>Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
+                id="password"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
                 required
               />
             </div>
