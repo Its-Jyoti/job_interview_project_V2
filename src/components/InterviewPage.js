@@ -20,7 +20,7 @@ const InterviewPage = () => {
             interview_type,
         };
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/generate-questions/`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -94,4 +94,5 @@ const InterviewPage = () => {
 };
 
 export default InterviewPage;
+
 
