@@ -64,7 +64,7 @@ const Login = () => {
             </div>
 
             <div className="forgot-password-link">
-              <a href="#" onClick={handleForgotPassword}>Forgot Password?</a>
+              <a href="/forgot-password" onClick={handleForgotPassword}>Forgot Password?</a>
             </div>
 
             <button type="submit" className="login-button">
@@ -91,4 +91,5 @@ const Login = () => {
 };
 
 export default Login;
+
 
