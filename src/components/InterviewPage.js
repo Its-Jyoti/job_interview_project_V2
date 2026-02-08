@@ -86,6 +86,7 @@ const InterviewPage = () => {
             <button className="start-button" onClick={handleStartInterview} disabled={loading}>
                 {loading ? 'Fetching Questions...' : 'Start Interview'}
             </button>
+            <button onClick={toggleSpeaker}>🔊</button>
             {/* <button className="speaker-button" onClick={toggleSpeaker}> */}
                 {/* {isSpeaking ? '🔇 Stop Speaking' : '🔊 Start Speaking'} */}
             {/* </button> */}
@@ -94,5 +95,6 @@ const InterviewPage = () => {
 };
 
 export default InterviewPage;
+
 
 
