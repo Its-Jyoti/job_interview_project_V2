@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response =await axios.post(`${import.meta.env.VITE_API_URL}/api/login/`, {
+      const response =await axios.post(`${process.env.REACT_APP_API_URL}/api/login/`, {
         username,
         password,
       });
@@ -81,3 +81,4 @@ const Login = () => {
 
 
 export default Login;
+
