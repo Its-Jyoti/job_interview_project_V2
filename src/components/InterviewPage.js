@@ -1,104 +1,107 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './InterviewPage.css'; // Import your CSS file
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./InterviewPage.css";
 
 const InterviewPage = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { domain, difficulty, interview_type } = location.state || {};
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [isSpeaking, setIsSpeaking] = useState(false); // State to track if the speaker is active
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const handleStartInterview = () => {
-        setLoading(true);
-        setError('');
+  // values coming from previous page
+  const { domain, difficulty, interview_type } = location.state || {};
 
-        const payload = {
-            domain,
-            difficulty,
-            interview_type,
-        };
-        fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    domain: selectedDomain,
-    difficulty: selectedDifficulty,
-    interview_type: selectedInterviewType,
-  }),
-});
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.questions && data.questions.length > 0) {
-                navigate('/questions', { state: { questions: data.questions } });
-            } else {
-                setError('No questions generated. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setError('An error occurred: ' + error.message);
-        })
-        .finally(() => {
-            setLoading(false);
-        });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const handleStartInterview = () => {
+    setLoading(true);
+    setError("");
+
+    const payload = {
+      domain,
+      difficulty,
+      interview_type,
     };
 
-    // Function to read the welcome message aloud
-    const handleReadWelcomeMessage = () => {
-        const message = "Welcome to Our Company! How do you feel? All the best for your interview!";
-        const utterance = new SpeechSynthesisUtterance(message);
-        window.speechSynthesis.speak(utterance);
-    };
+    console.log("Sending payload:", payload); // 🔍 IMPORTANT
 
-    // Automatically read the welcome message when the component mounts
-    useEffect(() => {
-        handleReadWelcomeMessage();
-        setIsSpeaking(true); // Set speaking state to true when the message is read
-
-        // Stop any speech synthesis when the component unmounts
-        return () => {
-            window.speechSynthesis.cancel();
-            setIsSpeaking(false);
-        };
-    }, []);
-
-    // Toggle the speaker on/off
-    const toggleSpeaker = () => {
-        if (isSpeaking) {
-            window.speechSynthesis.cancel(); // Stop speaking if it's currently speaking
-        } else {
-            handleReadWelcomeMessage(); // Read the message again
+    fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-        setIsSpeaking(!isSpeaking); // Toggle the speaking state
-    };
+        return response.json();
+      })
+      .then((data) => {
+        console.log("API response:", data);
 
-    return (
-        <div className="interview-container">
-            <h2 className="welcome-message">Welcome to Our Company!</h2>
-            <p className="comfort-message">How do you feel? All the best for your interview!</p>
-            {error && <p className="error-message">{error}</p>}
-            <button className="start-button" onClick={handleStartInterview} disabled={loading}>
-                {loading ? 'Fetching Questions...' : 'Start Interview'}
-            </button>
-            <button onClick={toggleSpeaker}>🔊</button>
-            {/* <button className="speaker-button" onClick={toggleSpeaker}> */}
-                {/* {isSpeaking ? '🔇 Stop Speaking' : '🔊 Start Speaking'} */}
-            {/* </button> */}
-        </div>
-    );
+        if (data.questions && data.questions.length > 0) {
+          navigate("/questions", { state: { questions: data.questions } });
+        } else {
+          setError("No questions generated. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setError("An error occurred: " + error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const handleReadWelcomeMessage = () => {
+    const message =
+      "Welcome to Our Company! How do you feel? All the best for your interview!";
+    const utterance = new SpeechSynthesisUtterance(message);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  useEffect(() => {
+    handleReadWelcomeMessage();
+    setIsSpeaking(true);
+
+    return () => {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    };
+  }, []);
+
+  const toggleSpeaker = () => {
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+    } else {
+      handleReadWelcomeMessage();
+    }
+    setIsSpeaking(!isSpeaking);
+  };
+
+  return (
+    <div className="interview-container">
+      <h2 className="welcome-message">Welcome to Our Company!</h2>
+      <p className="comfort-message">
+        How do you feel? All the best for your interview!
+      </p>
+
+      {error && <p className="error-message">{error}</p>}
+
+      <button
+        className="start-button"
+        onClick={handleStartInterview}
+        disabled={loading}
+      >
+        {loading ? "Fetching Questions..." : "Start Interview"}
+      </button>
+
+      <button onClick={toggleSpeaker}>🔊</button>
+    </div>
+  );
 };
 
 export default InterviewPage;
-
-
-
-
