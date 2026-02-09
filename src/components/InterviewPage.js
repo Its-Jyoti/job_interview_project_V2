@@ -26,35 +26,32 @@ const InterviewPage = () => {
     console.log("Sending payload:", payload); // 🔍 IMPORTANT
 
     fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("API response:", data);
-
-        if (data.questions && data.questions.length > 0) {
-          navigate("/questions", { state: { questions: data.questions } });
-        } else {
-          setError("No questions generated. Please try again.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setError("An error occurred: " + error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload),
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if (data.questions && data.questions.length > 0) {
+      navigate("/questions", { state: { questions: data.questions } });
+    } else {
+      setError("No questions generated. Please try again.");
+    }
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    setError("An error occurred: " + error.message);
+  })
+  .finally(() => {
+    setLoading(false);
+  });
 
   const handleReadWelcomeMessage = () => {
     const message =
@@ -105,3 +102,4 @@ const InterviewPage = () => {
 };
 
 export default InterviewPage;
+
