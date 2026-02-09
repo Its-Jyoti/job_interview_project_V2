@@ -16,7 +16,13 @@ const InterviewPage = () => {
     setLoading(true);
     setError("");
 
-    const payload = { domain, difficulty, interview_type };
+    const payload = {
+      domain,
+      difficulty,
+      interview_type,
+    };
+
+    console.log("Sending payload:", payload);
 
     fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
       method: "POST",
@@ -39,8 +45,8 @@ const InterviewPage = () => {
         }
       })
       .catch((err) => {
-        console.error(err);
-        setError("Something went wrong while fetching questions.");
+        console.error("Error:", err);
+        setError("An error occurred: " + err.message);
       })
       .finally(() => {
         setLoading(false);
@@ -48,30 +54,45 @@ const InterviewPage = () => {
   };
 
   const handleReadWelcomeMessage = () => {
-    const msg =
+    const message =
       "Welcome to Our Company! How do you feel? All the best for your interview!";
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+    const utterance = new SpeechSynthesisUtterance(message);
+    window.speechSynthesis.speak(utterance);
   };
 
   useEffect(() => {
     handleReadWelcomeMessage();
     setIsSpeaking(true);
 
-    return () => window.speechSynthesis.cancel();
+    return () => {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    };
   }, []);
 
   const toggleSpeaker = () => {
-    window.speechSynthesis.cancel();
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+    } else {
+      handleReadWelcomeMessage();
+    }
     setIsSpeaking(!isSpeaking);
   };
 
   return (
     <div className="interview-container">
-      <h2>Welcome to Our Company!</h2>
+      <h2 className="welcome-message">Welcome to Our Company!</h2>
+      <p className="comfort-message">
+        How do you feel? All the best for your interview!
+      </p>
 
       {error && <p className="error-message">{error}</p>}
 
-      <button onClick={handleStartInterview} disabled={loading}>
+      <button
+        className="start-button"
+        onClick={handleStartInterview}
+        disabled={loading}
+      >
         {loading ? "Fetching Questions..." : "Start Interview"}
       </button>
 
