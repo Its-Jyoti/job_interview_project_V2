@@ -26,7 +26,7 @@ const Login = () => {
   const handleForgotPassword = () => {
     navigate('/forgot-password');
   };
-  
+
   return (
     <div className="login-container">
       {/* LEFT IMAGE */}
@@ -68,8 +68,15 @@ const Login = () => {
               />
             </div>
 
+            {/* ✅ FIXED FORGOT PASSWORD */}
             <div className="forgot-password-link">
-              <a href="/forgot-password" onClick={handleForgotPassword}>Forgot Password?</a>
+              <button
+                type="button"
+                className="link-button"
+                onClick={handleForgotPassword}
+              >
+                Forgot Password?
+              </button>
             </div>
 
             <button type="submit" className="login-button">
@@ -96,6 +103,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
