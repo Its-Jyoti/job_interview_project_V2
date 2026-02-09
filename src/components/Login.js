@@ -22,6 +22,11 @@ const Login = () => {
     }
   };
 
+  // ✅ ADD THIS FUNCTION
+  const handleForgotPassword = () => {
+    navigate('/forgot-password');
+  };
+  
   return (
     <div className="login-container">
       {/* LEFT IMAGE */}
@@ -91,5 +96,6 @@ const Login = () => {
 };
 
 export default Login;
+
 
 
