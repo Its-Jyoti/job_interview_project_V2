@@ -19,14 +19,17 @@ const InterviewPage = () => {
             difficulty,
             interview_type,
         };
-
         fetch(`${process.env.REACT_APP_API_URL}/api/generate-questions/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        })
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    domain: selectedDomain,
+    difficulty: selectedDifficulty,
+    interview_type: selectedInterviewType,
+  }),
+});
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -95,6 +98,7 @@ const InterviewPage = () => {
 };
 
 export default InterviewPage;
+
 
 
 
